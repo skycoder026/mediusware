@@ -26,6 +26,24 @@
                         </div>
 
                         <div class="row mb-3">
+                            <label for="account_type" class="col-md-4 col-form-label text-md-end">{{ __('Account Type') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="account_type" class="form-control @error('account_type') is-invalid @enderror" name="account_type" required>
+                                    <option value="">-Select Account Type-</option>
+                                    @foreach (getAccountTypes() as $accountType)
+                                        <option value="{{ $accountType }}" {{ old('account_type') == $accountType ? 'selected' : '' }}>{{ $accountType }}</option>
+                                    @endforeach
+                                </select>
+                                @error('account_type')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
